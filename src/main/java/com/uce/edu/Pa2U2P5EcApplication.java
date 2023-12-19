@@ -5,18 +5,19 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Alumno;
-import com.uce.edu.service.IAlumnoService;
-import com.uce.edu.service.IEstudianteService;
+import com.uce.edu.repository.modelo.Ciudadano;
+import com.uce.edu.repository.modelo.Empleado;
+import com.uce.edu.service.ICiudadanoService;
+import com.uce.edu.service.IEmpleadoService;
 
 @SpringBootApplication
 public class Pa2U2P5EcApplication implements CommandLineRunner {
 
 	@Autowired
-	private IEstudianteService estudianteService;
+	private ICiudadanoService ciudadanoService;
 
 	@Autowired
-	private IAlumnoService alumnoService;
+	private IEmpleadoService empleadoService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5EcApplication.class, args);
@@ -26,51 +27,19 @@ public class Pa2U2P5EcApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-			//Seleccionar:
-			/*Estudiante estu = new Estudiante();
-			estu.setNombre("Paola");
-			estu.setApellido("Tigrero");
-			estu.setCedula("24596851");
-			estu.setFechaNacimiento(LocalDateTime.of(1999, 11, 10, 01, 50));
-			//estu.setId(10);
-			this.estudianteService.registrar(estu);	
-			
-			//Buscar:
-			Estudiante estu1 = this.estudianteService.buscar(1);
-			System.out.println(estu1);
-			
-			//Actualizar:
-			Estudiante estu2 = this.estudianteService.buscar(2);
-			System.out.println(estu2);
-			estu2.setNombre("Paulina");
-			this.estudianteService.actualizar(estu2);*/	
+	
+		//Insertar ciudadano:
+		Ciudadano ciudadano = new Ciudadano();
+		ciudadano.setNombre("Gabriel");
+		this.ciudadanoService.registrar(ciudadano);
+		
+		//Insertar empleado:
+				//Empleado empleado = new Empleado();
+				//empleado.setCiudadano(ciudadano);
 
-			//Eliminar:
-			//this.estudianteService.eliminar(3);
-
-
-
-			//-------------------------------------------
-			//Insertar alumno:
-			Alumno alumn = new Alumno();
-			alumn.setNombre("Gabriel");
-			this.alumnoService.registrar(alumn);
-
-
-			//Buscar Alumno:
-			Alumno alumn1 = this.alumnoService.buscar(2);
-			System.out.println(alumn1);
-
-
-			//Actualizar Alumno:
-			Alumno alumn2 = this.alumnoService.buscar(3);
-			System.out.println(alumn2);
-			alumn2.setNombre("Bolivar");
-			this.alumnoService.actualizar(alumn2);
-
-			//Eliminar Alumno:
-			this.alumnoService.eliminar(5);
-
+		this.ciudadanoService.buscar(2);
+		System.out.println(ciudadano);
+		
 	}
 
 }
