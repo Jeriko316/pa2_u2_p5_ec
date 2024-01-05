@@ -9,4 +9,7 @@ public interface ICiudadanoService {
 
 	public void registrar(Ciudadano ciudadano);
 	
+	public void eliminar(Integer id);
+	
+	public void actualizar(Ciudadano ciudadano);
 }

@@ -1,5 +1,9 @@
 package com.uce.edu;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -39,6 +43,11 @@ public class Pa2U2P5EcApplication implements CommandLineRunner {
 
 		this.ciudadanoService.buscar(2);
 		System.out.println(ciudadano);
+		
+		
+		Empleado empl = new Empleado();
+		empl.setSalario(new BigDecimal(10));
+		empl.setFechaIngreso(LocalDate.now());
 		
 	}
 
