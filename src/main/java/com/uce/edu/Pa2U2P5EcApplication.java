@@ -1,34 +1,23 @@
 package com.uce.edu;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Ciudadano;
-import com.uce.edu.repository.modelo.Empleado;
-import com.uce.edu.repository.modelo.Habitacion;
-import com.uce.edu.repository.modelo.Hotel;
-import com.uce.edu.service.ICiudadanoService;
-import com.uce.edu.service.IEmpleadoService;
-import com.uce.edu.service.IHotelService;
+import com.uce.edu.repository.modelo.Autor;
+import com.uce.edu.repository.modelo.Libro;
+import com.uce.edu.service.ILibroService;
 
 @SpringBootApplication
 public class Pa2U2P5EcApplication implements CommandLineRunner {
 
 	@Autowired
-	private ICiudadanoService ciudadanoService;
-
-	@Autowired
-	private IEmpleadoService empleadoService;
-	
-
-	private IHotelService hotelService;
+	private ILibroService iLibroService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5EcApplication.class, args);
@@ -39,50 +28,31 @@ public class Pa2U2P5EcApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 	
-		//Insertar ciudadano:
-		/*Ciudadano ciudadano = new Ciudadano();
-		ciudadano.setNombre("Gabriel");
-		this.ciudadanoService.registrar(ciudadano);
-		
-		//Insertar empleado:
-				//Empleado empleado = new Empleado();
-				//empleado.setCiudadano(ciudadano);
-
-		this.ciudadanoService.buscar(2);
-		System.out.println(ciudadano);
-		
-		
-		Empleado empl = new Empleado();
-		empl.setSalario(new BigDecimal(10));
-		empl.setFechaIngreso(LocalDate.now());*/
-		
+	Libro libro = new Libro();
+	libro.setTitulo("java");
+	libro.setFechaPublicacion(LocalDateTime.now());
 	
-		Hotel hotel = new Hotel();
-		hotel.setDireccion("av siempre viva");
-		hotel.setNombre("JM HOTEL");
-		//hote.setHabitaciones(null);
-
-		Habitacion habi1 = new Habitacion();
-		habi1.setClase("MEDIA");
-		habi1.setNumero("B2");
-		habi1.setHotel(hotel);
-
-		Habitacion habi2 = new Habitacion();
-		habi2.setClase("VIP");
-		habi2.setNumero("B2");
-		habi2.setHotel(hotel);
-
-		
-		List<Habitacion> habitaciones = new ArrayList<>();
-		habitaciones.add(habi1);
-		habitaciones.add(habi2);
-
-		
-		hotel.setHabitaciones(habitaciones);
-		this.hotelService.guardar(hotel);		
-
+	Autor autor1 = new Autor();
+	autor1.setNacionalidad("ecuatoriano");
+	autor1.setNombre("pepito perez");
 	
-		
+	Autor autor2= new Autor();
+	autor2.setNacionalidad("ecuatoriano");
+	autor2.setNombre("daniel teran");
+	
+	Set<Autor> autores = new HashSet<Autor>();
+	autores.add(autor1);
+	autores.add(autor2);
+	
+	libro.setAutores(autores);
+	
+	Set<Libro> libros = new HashSet<>();
+	libros.add(libro);
+	
+	autor1.setLibros(libros);
+	autor2.setLibros(libros);
+	
+	this.iLibroService.guardar(libro);
 		
 	}
 
