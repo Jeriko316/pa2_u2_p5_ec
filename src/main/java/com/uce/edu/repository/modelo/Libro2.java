@@ -1,15 +1,13 @@
 package com.uce.edu.repository.modelo;
 
 import java.time.LocalDateTime;
-import java.util.Set;
+import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -29,7 +27,8 @@ public class Libro2 {
 	@Column(name="libr_fecha_publicacion")
 	private LocalDateTime FechaPublicacion;
 
-	
+
+	private List <Autor_Libro> autoresLibros;
 
 	//steer and getters 
 
