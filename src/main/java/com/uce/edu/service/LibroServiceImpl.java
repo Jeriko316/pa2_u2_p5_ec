@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.uce.edu.repository.ILibroRepository;
 import com.uce.edu.repository.modelo.Libro;
+import com.uce.edu.repository.modelo.Libro2;
 
 @Service
 public class LibroServiceImpl implements ILibroService{
@@ -35,6 +36,12 @@ public class LibroServiceImpl implements ILibroService{
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
 		this.iLibroRepository.eliminar(id);
+	}
+
+	@Override
+	public void guardar(Libro2 libro2) {
+		// TODO Auto-generated method stub
+		this.iLibroRepository.insertar(libro2);
 	}
 
 
