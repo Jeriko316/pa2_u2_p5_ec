@@ -10,11 +10,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="libro")
+@NamedQuery(name = "Libro.queryBuscarPorTitulo" , query = "SELECT l FROM Libro l  WHERE l.titulo = : titulo")
+@NamedQuery(name = "Libro.queryBuscarPorFecha" , query = "SELECT l FROM Libro l WHERE l.fechaPublicacion > : fecha")
 public class Libro {
 
 	@Id
@@ -27,7 +30,8 @@ public class Libro {
 	private String titulo;
 	
 	@Column(name="libr_fecha_publicacion")
-	private LocalDateTime FechaPublicacion;
+	private LocalDateTime fechaPublicacion;
+	
 
 	@ManyToMany(mappedBy="libros", cascade = CascadeType.ALL) //a la final si en autor hacemos esto da igual xq ambas son padres
 	private Set<Autor> autores;
@@ -59,16 +63,16 @@ public class Libro {
 	}
 
 	public LocalDateTime getFechaPublicacion() {
-		return FechaPublicacion;
+		return fechaPublicacion;
 	}
 
 	public void setFechaPublicacion(LocalDateTime fechaPublicacion) {
-		FechaPublicacion = fechaPublicacion;
+		fechaPublicacion = fechaPublicacion;
 	}
 
 	@Override
 	public String toString() {
-		return "Libro [id=" + id + ", titulo=" + titulo + ", FechaPublicacion=" + FechaPublicacion + ", autores="
+		return "Libro [id=" + id + ", titulo=" + titulo + ", FechaPublicacion=" + fechaPublicacion + ", autores="
 				+ "]";
 	}
 	

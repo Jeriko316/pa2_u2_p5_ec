@@ -1,7 +1,6 @@
 package com.uce.edu;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +8,20 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Autor2;
-import com.uce.edu.repository.modelo.AutorLibro;
-import com.uce.edu.repository.modelo.Libro2;
-import com.uce.edu.service.IAutorService;
+import com.uce.edu.repository.modelo.Libro;
 import com.uce.edu.service.ILibroService;
 
 @SpringBootApplication
 public class Pa2U2P5EcApplication implements CommandLineRunner {
 
+	//para buscar sin primary key
+	//1.Query (JPQL es un lenguaje orientado de ojeto para consulta a la base de datos )
+	//	1.1 Typer Query
+	//	1.2 NamedQuery
+	
+	//2.NativE Query
+	//3.Criteria API Query
+	
 	@Autowired
 	private ILibroService iLibroService;
 
@@ -59,7 +63,7 @@ public class Pa2U2P5EcApplication implements CommandLineRunner {
 	
 	this.iLibroService.guardar(libro);*/
 		
-		Libro2 libro = new Libro2();
+		/*Libro2 libro = new Libro2();
 		libro.setTitulo("Java2");
 		libro.setFechaPublicacion(LocalDateTime.now());
 
@@ -78,22 +82,52 @@ public class Pa2U2P5EcApplication implements CommandLineRunner {
 		AutorLibro autorLibro1 = new AutorLibro();
 		autorLibro1.setLibro2(libro);
 		autorLibro1.setAutor2(autor1);
+		autorLibro1.setFecha(LocalDateTime.now());
+
 		
 		AutorLibro autorLibro2 = new AutorLibro();
 		autorLibro2.setLibro2(libro);
 		autorLibro2.setAutor2(autor2);
+		autorLibro2.setFecha(LocalDateTime.now());
 		
 		
-		List<AutorLibro> lista = new ArrayList<>();
+		List<AutorLibro> lista = new ArrayList<AutorLibro>();
 		lista.add(autorLibro1);
 		lista.add(autorLibro2);
 		
-		libro.setAutoresLibros(lista);
+		//libro.setAutoresLibros(lista);
 		
-		//this.iLibroService.guardar(libro);
-		//Libro libro = this.iLibroService.buscarPorNombre("JAVA");
-		//System.out.println(libroFinal);
+		this.iLibroService.guardar(libro);
+		Libro libroFinal = this.iLibroService.buscarPorNombre("Java");
+		System.out.println(libroFinal);*/
+		
+		List<Libro> list = this.iLibroService.buscarPorFecha(LocalDateTime.of(2023, 1, 1, 7, 15));
+		for(Libro libro : list) {
+			System.out.println(libro);
+		}
+		
+		System.out.println("TypedQuery");
+		
+		Libro li1 = this.iLibroService.buscarPorTitulo("java");
+		System.out.println(li1);
+		
+		List<Libro> lista2 = this.iLibroService.buscarPorFechaPubli(LocalDateTime.of(2023, 1, 1, 7, 15));
+		for(Libro libro : lista2) {
+			System.out.println(libro);
+		}
+		
+		System.out.println("NamedQuery");
+		Libro li2 = this.iLibroService.buscarPorTituloNamed("programacion2");
+		System.out.println(li2);
+		
+		System.out.println("named query");
+		List <Libro>lista3 = this.iLibroService.buscarPorFechaPubliNamed(LocalDateTime.of(2023, 1, 1, 7, 15));
+		
+		
+		for(Libro libro : lista3) {
+			System.out.println(lista3);
+		}
 	}
 		
-	}
+}
 
