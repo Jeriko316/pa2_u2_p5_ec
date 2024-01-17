@@ -1,20 +1,19 @@
 package com.uce.edu;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.repository.modelo.Libro;
+import com.uce.edu.repository.modelo.Ciudadano;
+import com.uce.edu.repository.modelo.Empleado;
+import com.uce.edu.service.ICiudadanoService;
 import com.uce.edu.service.ILibroService;
 
 @SpringBootApplication
 public class Pa2U2P5EcApplication implements CommandLineRunner {
 
-	//para buscar sin primary key
+	//para buscar sin primary key   jpql java persiste query lenguaje
 	//1.Query (JPQL es un lenguaje orientado de ojeto para consulta a la base de datos )
 	//	1.1 Typer Query
 	//	1.2 NamedQuery
@@ -24,6 +23,9 @@ public class Pa2U2P5EcApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ILibroService iLibroService;
+	
+	@Autowired
+	private ICiudadanoService ciudadanoService;
 
 	//@Autowired
 	//private IAutorService iAutorService;
@@ -101,7 +103,7 @@ public class Pa2U2P5EcApplication implements CommandLineRunner {
 		Libro libroFinal = this.iLibroService.buscarPorNombre("Java");
 		System.out.println(libroFinal);*/
 		
-		List<Libro> list = this.iLibroService.buscarPorFecha(LocalDateTime.of(2023, 1, 1, 7, 15));
+		/*List<Libro> list = this.iLibroService.buscarPorFecha(LocalDateTime.of(2023, 1, 1, 7, 15));
 		for(Libro libro : list) {
 			System.out.println(libro);
 		}
@@ -125,9 +127,15 @@ public class Pa2U2P5EcApplication implements CommandLineRunner {
 		
 		
 		for(Libro libro : lista3) {
-			System.out.println(lista3);
-		}
+			System.out.println(lista3);*/
+	
+		//Empleado empleado = this.ciudadanoService.buscarPorCedula("0401213053");
+		//System.out.println(empleado);
+		
+		Ciudadano ciudadano =this.ciudadanoService.buscarPorCedulaCiu("0401213053");
+		System.out.println(ciudadano);
 	}
+	
 		
 }
 
