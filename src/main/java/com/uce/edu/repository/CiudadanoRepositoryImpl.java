@@ -50,7 +50,8 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 		this.entityManager.merge(ciudadano);
 	}
 
-
+	
+	//typedQuery
 	@Override
 	public Empleado seleccionarPorCedula(String cedula) {
 		// TODO Auto-generated method stub
@@ -59,7 +60,7 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 		return myQuery.getSingleResult();
 	}
 
-
+	//Native
 	@Override
 	public Ciudadano seleccionarPorCedulaCiu(String cedula) {
 		// TODO Auto-generated method stub
@@ -87,7 +88,7 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 	}
 
 //////sql dinamicos 
-	@Override
+	/*@Override
 	public Ciudadano seleccionarPorApellido(String apellido) {
 		// TODO Auto-generated method stub
 		// Como seria el sql orientado a objetos -> SELECT c FROM Ciudadano c WHERE c.apellido = : variable 
@@ -119,7 +120,7 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 	}
 
 
-	@Override
+	/*@Override
 	public Ciudadano seleccionarPorCriterial(String nombre, String apellido, String cedula) {
 		// TODO Auto-generated method stub
 		//0. Creamos una instancia de la interfaz CriteriaBuilder apartir de un Entity Manger que interaccion con la base de datos
@@ -209,6 +210,5 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 		 TypedQuery <Ciudadano> myTypedQuery = this.entityManager.createQuery(myCriteriaQuery);
 		
 		return myTypedQuery.getSingleResult();
-	}
-
+	}*/
 }

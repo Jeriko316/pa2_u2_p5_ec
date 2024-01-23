@@ -1,5 +1,7 @@
 package com.uce.edu.repository;
 
+import java.util.List;
+
 import com.uce.edu.repository.modelo.Alumno;
 
 public interface IAlumnoRepository {
@@ -13,4 +15,8 @@ public interface IAlumnoRepository {
 	public void actualizar(Alumno alumno);
 
 	public void eliminar(Integer id);
+	
+
+	public List <Alumno> seleccionarPorNombre(String nombre);
+	
 }

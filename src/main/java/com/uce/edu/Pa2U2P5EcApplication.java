@@ -1,12 +1,16 @@
 package com.uce.edu;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.repository.modelo.Alumno;
 import com.uce.edu.repository.modelo.Ciudadano;
 import com.uce.edu.repository.modelo.Empleado;
+import com.uce.edu.service.IAlumnoService;
 import com.uce.edu.service.ICiudadanoService;
 import com.uce.edu.service.ILibroService;
 
@@ -28,6 +32,9 @@ public class Pa2U2P5EcApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ICiudadanoService ciudadanoService;
+	
+	@Autowired
+	private IAlumnoService alumnoService;
 
 	//@Autowired
 	//private IAutorService iAutorService;
@@ -131,29 +138,37 @@ public class Pa2U2P5EcApplication implements CommandLineRunner {
 		for(Libro libro : lista3) {
 			System.out.println(lista3);*/
 	
-		//Empleado empleado = this.ciudadanoService.buscarPorCedula("0401213053");
-		//System.out.println(empleado);
+		Empleado empleado = this.ciudadanoService.buscarPorCedula("0401213053");
+		System.out.println(empleado);
 		
-		//Ciudadano ciudadano =this.ciudadanoService.buscarPorCedulaCiu("0401213053");
-		//System.out.println(ciudadano);
+		Ciudadano ciudadano =this.ciudadanoService.buscarPorCedulaCiu("0401213053");
+		System.out.println(ciudadano);
 		
-		//Empleado empl = this.ciudadanoService.buscarPorNombre("carlos");
-		//System.out.println(empl);
+		Empleado empl = this.ciudadanoService.buscarPorNombre("carlos");
+		System.out.println(empl);
 		
+		System.out.println("///////////////////////////////////");
+		System.out.println("///////////////////////////////////");
+
+		List<Alumno> lista = this.alumnoService.buscarPorNombre("santiago");
+		for (Alumno alumno : lista) {
+			System.out.println("///////////////////////////////////");
+			System.out.println(alumno);
+		}
 		
-		//Ciudadano empl = this.ciudadanoService.buscarPorApellidoCiu("enriquez");
-		//System.out.println(empl);
+		//Ciudadano empl2 = this.ciudadanoService.buscarPorApellidoCiu("enriquez");
+		//System.out.println(empl2);
 		
 		////////////////////////SQL DINAMICO -- CRITERIA API QUERY///////////////
-		Ciudadano ciu = this.ciudadanoService.buscarPorApellido("enriquez");
-		System.out.println(ciu);
+		//Ciudadano ciu = this.ciudadanoService.buscarPorApellido("enriquez");
+		//System.out.println(ciu);
 		
-		Ciudadano ciu1 = this.ciudadanoService.buscarPorCriterial("erick","enriquez","1701213053");
-		System.out.println(ciu1);
+		//Ciudadano ciu1 = this.ciudadanoService.buscarPorCriterial("erick","enriquez","1701213053");
+		//System.out.println(ciu1);
 		
-		System.out.println("Criteria API Query AND OR");
-		Ciudadano ciu4 = this.ciudadanoService.buscarPorCriterialAndOr("erick","enriquez","1701213053");
-		System.out.println(ciu1);
+		//System.out.println("Criteria API Query AND OR");
+		//Ciudadano ciu4 = this.ciudadanoService.buscarPorCriterialAndOr("erick","enriquez","1701213053");
+		//System.out.println(ciu1);
 		
 
 	}

@@ -1,11 +1,14 @@
 package com.uce.edu.repository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.repository.modelo.Alumno;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -39,6 +42,19 @@ public class AlumnoRepositoryImpl implements IAlumnoRepository{
 		Alumno alum = this.seleccionar(id);
 		this.entityManager.remove(alum);
 	}
+
+	@Override
+	public List<Alumno> seleccionarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				TypedQuery<Alumno> myQuery = this.entityManager
+						.createQuery("SELECT a FROM Alumno a WHERE a.nombre = :nombre", Alumno.class);
+				myQuery.setParameter("nombre", nombre);
+				return myQuery.getResultList();
+	}
+
+	
+	
 
 	
 }
