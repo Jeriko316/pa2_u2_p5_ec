@@ -40,15 +40,48 @@ public class CiudadanoService implements ICiudadanoService {
 	@Override
 	public Empleado buscarPorCedula(String cedula) {
 		// TODO Auto-generated method stub
-		this.iCiudadanoRepository.seleccionarPorCedula(cedula);
-		return null;
+		return this.iCiudadanoRepository.seleccionarPorCedula(cedula);
+		
 	}
 
 	@Override
 	public Ciudadano buscarPorCedulaCiu(String cedula) {
 		// TODO Auto-generated method stub
-		this.iCiudadanoRepository.seleccionarPorCedulaCiu(cedula);
-		return null;
+		return this.iCiudadanoRepository.seleccionarPorCedulaCiu(cedula);
+		 
+	}
+
+	@Override
+	public Empleado buscarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorNombre(nombre);
+		
+	}
+
+	@Override
+	public Ciudadano buscarPorApellidoCiu(String apellido) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorApellidoCiu(apellido);
+	}
+
+	@Override
+	public Ciudadano buscarPorApellido(String apellido) {
+		// TODO Auto-generated method stub
+		
+		
+		return this.iCiudadanoRepository.seleccionarPorApellido(apellido);
+	}
+
+	@Override
+	public Ciudadano buscarPorCriterial(String nombre, String apellido, String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorCriterial(nombre, apellido, cedula);
+	}
+
+	@Override
+	public Ciudadano buscarPorCriterialAndOr(String nombre, String apellido, String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepository.seleccionarPorCriterialAndOr(nombre, apellido, cedula);
 	}
 
 	

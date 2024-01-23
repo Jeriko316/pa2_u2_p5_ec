@@ -16,10 +16,12 @@ public class Pa2U2P5EcApplication implements CommandLineRunner {
 	//para buscar sin primary key   jpql java persiste query lenguaje
 	//1.Query (JPQL es un lenguaje orientado de ojeto para consulta a la base de datos )
 	//	1.1 Typer Query
-	//	1.2 NamedQuery
+	//	1.2 NamedQuery //centralizada garantizando la reutilizacion
 	
-	//2.NativE Query
-	//3.Criteria API Query
+	//2.NativE Query(sql puro) sacrifica el manejo orientado a objetos , mucho rendimiento sql nativo
+	
+	//3.Criteria API Query /// esta destinado para consultas sql dinamicos ya que el sql se construye utilizando metodos
+	
 	
 	@Autowired
 	private ILibroService iLibroService;
@@ -132,8 +134,28 @@ public class Pa2U2P5EcApplication implements CommandLineRunner {
 		//Empleado empleado = this.ciudadanoService.buscarPorCedula("0401213053");
 		//System.out.println(empleado);
 		
-		Ciudadano ciudadano =this.ciudadanoService.buscarPorCedulaCiu("0401213053");
-		System.out.println(ciudadano);
+		//Ciudadano ciudadano =this.ciudadanoService.buscarPorCedulaCiu("0401213053");
+		//System.out.println(ciudadano);
+		
+		//Empleado empl = this.ciudadanoService.buscarPorNombre("carlos");
+		//System.out.println(empl);
+		
+		
+		//Ciudadano empl = this.ciudadanoService.buscarPorApellidoCiu("enriquez");
+		//System.out.println(empl);
+		
+		////////////////////////SQL DINAMICO -- CRITERIA API QUERY///////////////
+		Ciudadano ciu = this.ciudadanoService.buscarPorApellido("enriquez");
+		System.out.println(ciu);
+		
+		Ciudadano ciu1 = this.ciudadanoService.buscarPorCriterial("erick","enriquez","1701213053");
+		System.out.println(ciu1);
+		
+		System.out.println("Criteria API Query AND OR");
+		Ciudadano ciu4 = this.ciudadanoService.buscarPorCriterialAndOr("erick","enriquez","1701213053");
+		System.out.println(ciu1);
+		
+
 	}
 	
 		

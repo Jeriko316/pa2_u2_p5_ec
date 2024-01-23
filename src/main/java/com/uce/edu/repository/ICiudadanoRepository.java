@@ -17,4 +17,18 @@ public interface ICiudadanoRepository {
 	
 	public Ciudadano seleccionarPorCedulaCiu(String cedula);
 	
+	public Empleado seleccionarPorNombre(String nombre);
+	
+	public Ciudadano seleccionarPorApellidoCiu(String apellido);
+	
+	////sql dinamicos
+	public Ciudadano seleccionarPorApellido(String apellido);
+	
+	//Funcionalidad que cuando sea el ciudadano de Pichincha busque por nombre
+	//Funcionalidad cuando sea de cotopaxi lo busque por apellido
+	//Funcionalidad cuando no se ni de cotopaxi ni pichincha lo busque por cedula
+	public Ciudadano seleccionarPorCriterial(String nombre , String apellido, String cedula);
+	
+	public Ciudadano seleccionarPorCriterialAndOr(String nombre, String apellido, String cedula);
+
 }
