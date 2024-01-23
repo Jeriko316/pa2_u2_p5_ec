@@ -88,7 +88,7 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 	}
 
 //////sql dinamicos 
-	/*@Override
+	@Override
 	public Ciudadano seleccionarPorApellido(String apellido) {
 		// TODO Auto-generated method stub
 		// Como seria el sql orientado a objetos -> SELECT c FROM Ciudadano c WHERE c.apellido = : variable 
@@ -120,7 +120,7 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 	}
 
 
-	/*@Override
+	@Override
 	public Ciudadano seleccionarPorCriterial(String nombre, String apellido, String cedula) {
 		// TODO Auto-generated method stub
 		//0. Creamos una instancia de la interfaz CriteriaBuilder apartir de un Entity Manger que interaccion con la base de datos
@@ -210,5 +210,43 @@ public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
 		 TypedQuery <Ciudadano> myTypedQuery = this.entityManager.createQuery(myCriteriaQuery);
 		
 		return myTypedQuery.getSingleResult();
-	}*/
+	}
+
+
+	@Override
+	public Ciudadano seleccionarPorNombreCriterial(String nombre) {
+		// TODO Auto-generated method stub
+		CriteriaBuilder myCriterialBuilder = this.entityManager.getCriteriaBuilder();
+		
+		CriteriaQuery<Ciudadano> myCriterialQuery = myCriterialBuilder.createQuery(Ciudadano.class);
+		
+		Root <Ciudadano> myFrom = myCriterialQuery.from(Ciudadano.class);
+		
+		Predicate condicionNombre = myCriterialBuilder.equal(myFrom.get("nombre"), nombre);
+		
+		myCriterialQuery.select(myFrom).where(condicionNombre);
+		
+		TypedQuery<Ciudadano> myTapedQuery = this.entityManager.createQuery(myCriterialQuery);
+		return myTapedQuery.getSingleResult();
+	}
+
+
+	@Override
+	public Ciudadano seleccionarPorCedulaCriterial(String cedula) {
+		// TODO Auto-generated method stub
+		CriteriaBuilder myCriteriaBuilder = this.entityManager.getCriteriaBuilder();
+		
+		CriteriaQuery<Ciudadano> myCriteriaQuery = myCriteriaBuilder.createQuery(Ciudadano.class);
+		
+		Root <Ciudadano> myFrom = myCriteriaQuery.from(Ciudadano.class);
+		
+		Predicate condicionCedula = myCriteriaBuilder.equal(myFrom.get("cedula"), cedula);
+		
+		myCriteriaQuery.select(myFrom).where(condicionCedula);
+		
+		TypedQuery<Ciudadano> myTapedQuery = this.entityManager.createQuery(myCriteriaQuery);
+		
+		
+ 		return myTapedQuery.getSingleResult();
+	}
 }

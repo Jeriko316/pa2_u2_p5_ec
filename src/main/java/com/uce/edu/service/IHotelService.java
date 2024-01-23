@@ -6,4 +6,6 @@ public interface IHotelService {
 
 	public void guardar(Hotel hotel);
 	
+	public Hotel buscarPorNombre(String nombre);
+	
 }

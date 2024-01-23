@@ -19,4 +19,6 @@ public interface IAlumnoRepository {
 
 	public List <Alumno> seleccionarPorNombre(String nombre);
 	
+	
+	
 }

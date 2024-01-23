@@ -2,7 +2,7 @@ package com.uce.edu.repository;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.repository.modelo.Hotel;
+import com.uce.edu.repository.modelo.Habitacion;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -15,34 +15,27 @@ import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
-public class HotelRepositoryImpl implements IHotelRepository {
+public class HabitacionRepositoryImpl implements IHabitacionRepository{
 
 	@PersistenceContext
 	private EntityManager entityManager;
-
 	@Override
-	public void insertar(Hotel hotel) {
-		// TODO Auto-generated method stub
-		this.entityManager.persist(hotel);
-	}
-
-	@Override
-	public Hotel seleccionarPorNombre(String nombre) {
+	public Habitacion seleccionarPorNumero(String numero) {
 		// TODO Auto-generated method stub
 		CriteriaBuilder myCriteriaBuilder = this.entityManager.getCriteriaBuilder();
 		
-		CriteriaQuery<Hotel> myCriteriaQuery = myCriteriaBuilder.createQuery(Hotel.class);
+		CriteriaQuery<Habitacion> myCriteriaQuery = myCriteriaBuilder.createQuery(Habitacion.class);
 		
-		Root<Hotel> myFrom = myCriteriaQuery.from(Hotel.class);
+		Root<Habitacion> myFrom = myCriteriaQuery.from(Habitacion.class);
 		
-		Predicate condicionNombre = myCriteriaBuilder.equal(myFrom.get("nombre"), nombre);
+		Predicate condicionNumero = myCriteriaBuilder.equal(myFrom.get("numero"), numero);
 		
-		myCriteriaQuery.select(myFrom).where(condicionNombre);
+		myCriteriaQuery.select(myFrom).where(condicionNumero);
 		
-		TypedQuery<Hotel> myTypedQuery = this.entityManager.createQuery(myCriteriaQuery);
+		TypedQuery<Habitacion> myTypedQuery = this.entityManager.createQuery(myCriteriaQuery);
+
+		
 		return myTypedQuery.getSingleResult();
 	}
 
-	
-	
 }
